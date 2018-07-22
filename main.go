@@ -20,7 +20,7 @@ type GetPemCert func(*jwtgo.Token) (string, error)
 
 // BridgeMiddlewareHandler converts jwt middleware into goa middleware.
 type BridgeMiddlewareHandler struct {
-	Middleware jwtmiddleware.JWTMiddleware
+	Middleware *jwtmiddleware.JWTMiddleware
 }
 
 // Handle implements goa.Middleware interface
