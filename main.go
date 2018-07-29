@@ -31,9 +31,10 @@ func (h *BridgeMiddlewareHandler) Handle(nextHandler goa.Handler) goa.Handler {
 		}
 
 		token := req.Context().Value(h.Middleware.Options.UserProperty).(*jwtgo.Token)
-		req = req.WithContext(jwt.WithJWT(req.Context(), token))
 
-		return nextHandler(ctx, rw, req)
+		newCtx := jwt.WithJWT(ctx, token)
+
+		return nextHandler(newCtx, rw, req)
 	}
 }
 
